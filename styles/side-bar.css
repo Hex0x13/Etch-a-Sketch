@@ -1,0 +1,106 @@
+.side-bar {
+  background-color: rgb(201, 201, 201);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  flex: 1;
+  min-width: 250px;
+  border-right: 1px solid rgb(56, 56, 56);
+  max-width: 340px;
+}
+
+.side-bar-element {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 160px;
+  padding: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.side-bar-element:hover {
+  filter: brightness(0.9);
+}
+
+.side-bar-element:active {
+  transform: scale(0.95, 0.95);
+}
+
+.side-bar-element.color {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 200px;
+  margin: 0;
+  padding: 5px;
+  cursor: default;
+}
+
+.side-bar-element.color:hover {
+  filter: none;
+}
+
+.side-bar-element.color:active {
+  transform: none;
+}
+
+#color-picker {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #494949;
+  transition: all 0.2s;
+}
+
+.coral {
+  background: coral;
+}
+
+.limegreen {
+  background: limegreen;
+}
+
+.turquoise {
+  background: turquoise;
+}
+
+.lightyellow {
+  background: #F8E473;
+}
+
+.pick-color {
+  background-image: linear-gradient(45deg, #fcff4c, turquoise, rgb(233, 63, 233), coral);
+}
+
+.color-option:hover {
+  filter: brightness(0.8);
+}
+
+.color-option:active {
+  transform: scale(0.95, 0.95);
+}
+
+#pen-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  width: 150px;
+  background-color: #333;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  font-size: 14px;
+  text-shadow: -1px -1px 0 rgb(255, 255, 255),
+  1px 1px 0 rgb(255, 255, 255),
+  -1px 1px 0 rgb(255, 255, 255),
+  1px -1px 0 rgb(255, 255, 255);
+}

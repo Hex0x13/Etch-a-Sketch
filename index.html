@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etch a Sketch</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/slider.css">
+  <link rel="stylesheet" href="styles/side-bar.css">
+  <script src="src/index.js" defer></script>
+</head>
+
+<body>
+
+  <header>
+    <h1 class="title">Etch a Sketch</h1>
+  </header>
+  <main>
+    <div class="side-bar">
+      <div id="pen-color">#444</div>
+      <button class="side-bar-element pen">Color</button>
+      <button class="side-bar-element erase">Erase</button>
+
+      <div class="side-bar-element color">
+        <button class="color-option coral"></button>
+        <button class="color-option limegreen"></button>
+        <button class="color-option turquoise"></button>
+        <button class="color-option lightyellow"></button>
+        <label class="color-option pick-color" for="color-picker"></label>
+        <input id="color-picker" type="color">
+      </div>
+
+      <button class="side-bar-element clear">Clear</button>
+      <div class="slider">
+        <label for="slide-bar" class="grid-size">1</label>
+        <input id="slide-bar" type="range" value="1" min="1" max="128">
+      </div>
+    </div>
+    <div class="container"></div>
+  </main>
+</body>
+
+</html>
