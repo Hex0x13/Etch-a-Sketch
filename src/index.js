@@ -30,6 +30,7 @@ let gridSize = DEFAULT_GRID_SIZE;
 let fillColor = DEFAULT_FILL_COLOR;
 let mouseDown = false;
 let randomFill = false;
+let touchstart = false;
 
 sliderInput.onmouseup = selectNumberOfGrid;
 sliderInput.addEventListener('input', changeSliderTrack);
@@ -39,7 +40,9 @@ eraserButton.onclick = eraseFill;
 clearButton.onclick = loadGrid;
 colorPicker.onchange = changeFillColor;
 document.body.onmousedown = () => { mouseDown = true };
+document.body.ontouchstart = () => {touchstart = true};
 document.body.onmouseup = () => { mouseDown = false };
+document.body.ontouchend = () => {touchstart = false};
 colorButtons.addEventListener('click', changeFillColor);
 
 
@@ -64,12 +67,30 @@ function selectNumberOfGrid(event) {
 }
 
 function changeFill(event) {
-  if (!mouseDown && event.type !== 'mousedown')
+  if ((!mouseDown && event.type !== 'mousedown' )){
     return;
+  }
+    
   if (!randomFill){
     this.style.backgroundColor = fillColor;
   } else {
     this.style.backgroundColor = getRandomFill();
+  }
+}
+
+function changeFillinTouch(event){
+  if (!touchstart && event.type !== 'touchstart'){
+    return;
+  }
+  const touchX = event.touches[0].clientX;
+  const touchY = event.touches[0].clientY;
+  const element = document.elementFromPoint(touchX, touchY);
+  const column = element.className === 'column';
+  
+  if (!randomFill && column) {
+    element.style.backgroundColor = fillColor;
+  } else if (column) {
+    element.style.backgroundColor = getRandomFill();
   }
 }
 
@@ -122,6 +143,8 @@ function loadGrid() {
       columnDiv.classList.add('column');
       columnDiv.addEventListener('mousedown', changeFill);
       columnDiv.addEventListener('mouseover', changeFill);
+      columnDiv.addEventListener('touchstart', changeFillinTouch);
+      columnDiv.addEventListener('touchmove', changeFillinTouch);
       rowDiv.appendChild(columnDiv);
     }
 
