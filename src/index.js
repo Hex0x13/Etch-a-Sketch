@@ -9,6 +9,7 @@ const eraserButton = document.querySelector('.erase');
 const colorPicker = document.querySelector('#color-picker');
 const colorButtons = document.querySelector('.color');
 const penColor = document.querySelector('#pen-color');
+const randomColor = document.querySelector('.rainbow');
 
 const thumbWidth = 5;
 const MAX_SLIDER_VALUE = +sliderInput.max;
@@ -26,13 +27,14 @@ const colors = {
 }
 
 let gridSize = DEFAULT_GRID_SIZE;
-let fillMode = FILL;
 let fillColor = DEFAULT_FILL_COLOR;
 let mouseDown = false;
+let randomFill = false;
 
 sliderInput.onmouseup = selectNumberOfGrid;
 sliderInput.addEventListener('input', changeSliderTrack);
 penButton.onclick = penFill;
+randomColor.onclick = randomizeFill;
 eraserButton.onclick = eraseFill;
 clearButton.onclick = loadGrid;
 colorPicker.onchange = changeFillColor;
@@ -62,37 +64,51 @@ function selectNumberOfGrid(event) {
 }
 
 function changeFill(event) {
-  if (mouseDown || event.type === 'mousedown')
+  if (!mouseDown && event.type !== 'mousedown')
+    return;
+  if (!randomFill){
     this.style.backgroundColor = fillColor;
+  } else {
+    this.style.backgroundColor = getRandomFill();
+  }
+}
+
+function getRandomFill(){
+  return `rgb(
+    ${Math.random() * 256}, 
+    ${Math.random() * 256}, 
+    ${Math.random() * 256})`;
+}
+
+function penColorChange(color, text, image, randomfill){
+  randomFill = randomfill;
+  fillColor = color;
+  penColor.textContent = text;
+  penColor.style.backgroundColor = fillColor;
+  penColor.style.backgroundImage = image;
 }
 
 function penFill() {
-  fillMode = FILL;
-  fillColor = DEFAULT_FILL_COLOR;
-  penColor.textContent = fillColor;
-  penColor.style.backgroundColor = fillColor;
+  penColorChange(DEFAULT_FILL_COLOR, DEFAULT_FILL_COLOR, 'none', false);
 }
 
 function eraseFill() {
-  fillMode = ERASE;
-  fillColor = ERASER_FILL_COLOR;
-  penColor.textContent = eraserButton.textContent;
-  penColor.style.backgroundColor = fillColor;
+  penColorChange(ERASER_FILL_COLOR, eraserButton.textContent, 'none', false);
 }
 
 function changeFillColor(event) {
   const pickcolor = fillColor = event.srcElement.classList[1];
   if (pickcolor in colors) {
-    fillMode = FILL;
-    fillColor = colors[pickcolor];
-    penColor.textContent = fillColor;
-    penColor.style.backgroundColor = fillColor;
+    penColorChange(colors[pickcolor], colors[pickcolor], 'none', false);
   } else if (pickcolor !== colorButtons.classList[1]) {
-    fillMode = FILL;
-    fillColor = colorPicker.value;
-    penColor.textContent = fillColor;
-    penColor.style.backgroundColor = fillColor;
+    penColorChange(colorPicker.value, colorPicker.value, 'none', false);
   }
+}
+
+function randomizeFill(){
+  const backgroundImage =
+  "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+  penColorChange('black', 'Random', backgroundImage, true);
 }
 
 
