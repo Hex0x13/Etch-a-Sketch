@@ -1,7 +1,14 @@
 @media (max-width: 766px) {
+  *, *::before, *::after {
+    font-size: 9px;
+  }
 
   .title {
     font-size: 10vw;
+  }
+  
+  header {
+    height: 12%;
   }
 
   main {
@@ -38,15 +45,27 @@
 
   .side-bar-element.color{
     grid-area: color-pick;
+    max-width: 200px;
+    width: 40vw;
   }
 
   .side-bar-element {
-    width: 12vw;
+    max-width: 60px;
     margin: 0;
+    overflow: hidden;
   }
 
   #pen-color {
     grid-area: color-text;
+    max-width: 150px;
+    width: 30vw;
+  }
+
+  .color-option {
+    max-width: 30px;
+    max-height: 30px;
+    width: 6vw;
+    height: 6vw;
   }
 
   .side-bar-element.clear {
