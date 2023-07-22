@@ -99,4 +99,8 @@
   .slider:hover .grid-size {
     transform: translateY(0%);
   }
+
+  .slider:active .grid-size {
+    transform: translateY(0%);
+  }
 }
