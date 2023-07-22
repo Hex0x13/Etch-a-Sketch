@@ -33,6 +33,7 @@ let randomFill = false;
 let touchstart = false;
 
 sliderInput.onmouseup = selectNumberOfGrid;
+sliderInput.ontouchend = selectNumberOfGrid;
 sliderInput.addEventListener('input', changeSliderTrack);
 penButton.onclick = penFill;
 randomColor.onclick = randomizeFill;
@@ -147,7 +148,6 @@ function loadGrid() {
       columnDiv.addEventListener('touchmove', changeFillinTouch);
       rowDiv.appendChild(columnDiv);
     }
-
     container.appendChild(rowDiv);
   }
 }
