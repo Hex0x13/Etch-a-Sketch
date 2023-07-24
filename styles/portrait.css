@@ -8,11 +8,11 @@
   }
   
   header {
-    height: 10%;
+    height: 15%;
   }
 
   main {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -23,13 +23,15 @@
   .container {
     width: 90vw;
     height: 90vw;
+    margin-top: 10%;
   }
 
   .side-bar {
     display: grid;
     grid-template-areas: 
     "color-text color-text clear pen"
-    "color-pick color-pick random erase";
+    "color-pick color-pick random erase"
+    "slider slider slider slider";
     width: 100%;
     max-width: 100%;
     gap: 0;
@@ -38,9 +40,12 @@
     align-content: center;
     justify-items: center;
     padding: 10px 30px;
+    height: 180px;
     gap: 5px;
     border: none;
-    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    position: fixed;
+    bottom: 0;
   }
 
   .side-bar-element.color{
@@ -92,15 +97,16 @@
   }
 
   .slider {
-    position: fixed;
-    bottom: 2px;
+    grid-area: slider;
+    margin: 0;
+    padding: 0;
   }
 
   .slider:hover .grid-size {
-    transform: translateY(0%);
+    transform: translateY(-500%);
   }
 
   .slider:active .grid-size {
-    transform: translateY(0%);
+    transform: translateY(-500%);
   }
 }
