@@ -79,13 +79,20 @@ header {
   border: 1px dotted rgb(180, 176, 176);
 }
 
-@media (max-height: 640px) {
-  body {
-    overflow: auto;
-  }
-
+@media (max-height: 720px) {
   .container {
     height: 50vw;
     width: 50vw;
+  }
+}
+
+@media (max-height: 575px) {
+  body {
+      overflow: auto;
+  }
+
+  header {
+    height: 0;
+    transform: scale(0);
   }
 }
